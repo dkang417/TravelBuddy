@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Travel Dashboard</title>
+</head>
+<body>
+	<div id="wrapper">
+		<div>
+			<h2>Hello, {{ user.name}}!</h2>
+
+			{% if messages %}
+        	<ul class="messages">
+            {% for message in messages %}
+           		<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        	</ul>
+        	{% endif %}
+
+			
+			<h4><a href="/logout">Logout</a></h4>
+			<h4>Your trip Schedules:</h4>
+
+			<table border=1 style="width:50%">
+			  <tr>
+			    <th>Destination</th>
+			    <th>Travel Start Date</th> 
+			    <th>Travel End Date</th>
+			    <th>Plan</th>
+			  </tr>
+
+			  <tr>
+			  	{% for trip in joined_trips %}
+		  			<td><a href="/travels/destination/{{trip.id}}">{{ trip.destination }}</a> </td>
+		  			<td>{{ trip.travel_date_from}} </td>
+		  			<td>{{ trip.travel_date_to  }} </td>
+		  			<td>{{ trip.description }} </td>
+		  		
+
+		  	  </tr>	
+		  	  {% for trip in user_trips %}
+		  	  <tr>
+		  	  		
+		  	  		<td><a href="/travels/destination/{{trip.id}}">{{ trip.destination }}</a> </td>
+		  			<td>{{ trip.travel_date_from}} </td>
+		  			<td>{{ trip.travel_date_to  }} </td>
+		  			<td>{{ trip.description }} </td>
+		  	  		
+		  			
+
+		  	  </tr>
+		  	  {% endfor %}
+		  	 {% endfor %}
+		  	
+		  	
+		  	
+
+			  
+			</table>
+
+
+			<h4>Other User's Travel Plans:</h4>
+			
+			<table border=1 style="width:50%">
+			  <tr>
+			    <th>Name</th>
+			    <th>Destination</th>
+			    <th>Travel Start Date</th> 
+			    <th>Travel End Date</th> 
+			    <th>Do you want to Join?</th>
+			  </tr>
+
+			  <tr>
+			  	{% for trip in other_trips %}
+			  		<td>{{ trip.creator.name }} </td>
+		  			<td><a href="/travels/destination/{{trip.id}}">{{ trip.destination }}</a> </td>
+		  			<td>{{ trip.travel_date_from}} </td>
+		  			<td>{{ trip.travel_date_to  }} </td>
+		  			
+		  			<td><a href="/join/{{trip.id}}">JOIN</a></td>
+		  	  </tr>	
+		  		{% endfor %}
+
+			  
+			</table>
+
+			
+			<h4><a href="/travels/add">Add Travel Plan</a></h4>
+
+		
+
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Destination</title>
+</head>
+<body>
+	<div id="wrapper">
+		<p><a href="/">Home</a></p>
+		<p><a href="/logout">Logout</a></p>
+		<h2>{{ trip.destination }}</h2>
+		<p>Planned By: {{ trip.creator.name }}</p>
+		<p>Description: {{ trip.description }}</p>
+		<p>Travel Date From: {{ trip.travel_date_from}}</p>
+		<p>Travel Date To: {{ trip.travel_date_to}}</p>
+		
+		<h2>Other users' joining the trip: </h2>
+		
+		{% for member in members %}
+		<p>{{ member.name }}</p>
+		{% endfor %}
+	</div>
+</body>
+</html>
